@@ -7,7 +7,7 @@ MAINTAINER Jean-Michel Ruiz <jean.ruiz@cismet.de>
 
 # STUFF
 
-RUN apk update && apk add --no-cache curl zip unzip nginx
+RUN apk update && apk add --no-cache curl zip unzip nginx vim
 
 # MAVEN
 
