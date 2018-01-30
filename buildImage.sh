@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE_NAME=cismet/cids-distribution-base
+IMAGE_NAME=reg.cismet.de/abstract/cids-distribution-base
 IMAGE_VERSION=6.0-debian
 IMAGE_BASE=debian
 
