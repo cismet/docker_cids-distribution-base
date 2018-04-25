@@ -9,15 +9,15 @@ MAINTAINER Jean-Michel Ruiz <jean.ruiz@cismet.de>
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update \
-    && apt-get -y --no-install-recommends install ca-certificates curl wget gcc libc6-dev libssl-dev make openssl zip unzip vim procps
+    && apt-get -y --no-install-recommends install ca-certificates curl wget gcc less libc6-dev libssl-dev locales make openssl zip unzip vim procps
 
 
 # JAVA
 
 ENV JAVA_VERSION 8
-ENV JAVA_UPDATE 161
-ENV JAVA_BUILD 12
-ENV JAVA_PATH 2f38c3b165be4555a1fa6e98c45e0808
+ENV JAVA_UPDATE 171
+ENV JAVA_BUILD 11
+ENV JAVA_PATH 512cd62ec5174c3487ac17c61aaa89e8
 ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-oracle
 ENV JAVA_JRE ${JAVA_HOME}/jre
 
