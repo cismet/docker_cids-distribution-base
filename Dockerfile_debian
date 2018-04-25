@@ -9,7 +9,7 @@ MAINTAINER Jean-Michel Ruiz <jean.ruiz@cismet.de>
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update \
-    && apt-get -y --no-install-recommends install ca-certificates curl wget gcc less libc6-dev libssl-dev locales make openssl zip unzip vim procps
+    && apt-get -y --no-install-recommends install ca-certificates curl wget gcc less libc6-dev libssl-dev locales locales-all make openssl zip unzip vim procps
 
 
 # JAVA
