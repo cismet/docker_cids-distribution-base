@@ -9,7 +9,7 @@ MAINTAINER Jean-Michel Ruiz <jean.ruiz@cismet.de>
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update \
-    && apt-get -y --no-install-recommends install ca-certificates curl wget gcc less libc6-dev libssl-dev locales locales-all make openssl zip unzip vim procps
+    && apt-get -y --no-install-recommends install ca-certificates curl gcc jq less libc6-dev libssl-dev locales locales-all make openssl procps unzip vim wget zip 
 
 
 # JAVA
@@ -36,7 +36,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 ENV MAVEN_MIRROR http://www-eu.apache.org/dist/maven/maven-3/
 ENV MAVEN_OPTS -XX:-OmitStackTraceInFastThrow -server -Xms512m -Xmx1024m
-ENV MAVEN_VERSION 3.5.2
+ENV MAVEN_VERSION 3.5.3
 ENV MAVEN_HOME /usr/share/maven
 
 RUN mkdir -p ${MAVEN_HOME} \
