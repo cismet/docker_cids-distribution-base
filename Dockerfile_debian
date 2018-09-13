@@ -9,15 +9,15 @@ MAINTAINER Jean-Michel Ruiz <jean.ruiz@cismet.de>
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update \
-    && apt-get -y --no-install-recommends install ca-certificates curl gcc jq less libc6-dev libssl-dev locales locales-all make openssl procps unzip vim wget zip 
+    && apt-get -y --no-install-recommends install ca-certificates curl gcc jq less libc6-dev libssl-dev locales locales-all make openssl postgresql-client procps unzip vim wget zip 
 
 
 # JAVA
 
 ENV JAVA_VERSION 8
-ENV JAVA_UPDATE 171
-ENV JAVA_BUILD 11
-ENV JAVA_PATH 512cd62ec5174c3487ac17c61aaa89e8
+ENV JAVA_UPDATE 181
+ENV JAVA_BUILD 13
+ENV JAVA_PATH 96a7b8442fe848ef90c96a2fad6ed6d1
 ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-oracle
 ENV JAVA_JRE ${JAVA_HOME}/jre
 
@@ -36,7 +36,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 ENV MAVEN_MIRROR http://www-eu.apache.org/dist/maven/maven-3/
 ENV MAVEN_OPTS -XX:-OmitStackTraceInFastThrow -server -Xms512m -Xmx1024m
-ENV MAVEN_VERSION 3.5.3
+ENV MAVEN_VERSION 3.5.4
 ENV MAVEN_HOME /usr/share/maven
 
 RUN mkdir -p ${MAVEN_HOME} \
