@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE_NAME=reg.cismet.de/abstract/cids-distribution-base
-IMAGE_VERSION=7.0-debian
+IMAGE_VERSION=7.0.1-debian
 IMAGE_BASE=debian
 
 

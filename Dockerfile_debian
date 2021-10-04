@@ -15,9 +15,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # JAVA
 
 ENV JAVA_VERSION 8
-ENV JAVA_UPDATE 281
+ENV JAVA_UPDATE 301
 ENV JAVA_BUILD 09
-ENV JAVA_PATH 89d678f2be164786b292527658ca1605
+ENV JAVA_PATH d3c52aa6bfa54d3ca74e617f18309292
 ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-oracle
 ENV JAVA_JRE ${JAVA_HOME}/jre
 
