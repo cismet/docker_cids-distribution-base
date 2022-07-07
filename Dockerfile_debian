@@ -1,4 +1,4 @@
-ARG IMAGE_VERSION=7.1-debian
+ARG IMAGE_VERSION=7.1.1-debian
 
 FROM debian:stretch
 
@@ -41,9 +41,9 @@ RUN mkdir -p ${MAVEN_HOME} \
     && ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn
 
 
-# NGINX
+# NGINX, DUMB-INIT
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
-    && apt-get -y --no-install-recommends install nginx sysv-rc-conf
+    && apt-get -y --no-install-recommends install nginx sysv-rc-conf dumb-init
 
 
 # GITLAB-RUNNER
