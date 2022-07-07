@@ -1,9 +1,6 @@
-ARG IMAGE_VERSION=7.0-debian
+ARG IMAGE_VERSION=7.1-debian
 
 FROM debian:stretch
-
-MAINTAINER Jean-Michel Ruiz <jean.ruiz@cismet.de>
-
 
 # STUFF
 
@@ -15,9 +12,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # JAVA
 
 ENV JAVA_VERSION 8
-ENV JAVA_UPDATE 301
-ENV JAVA_BUILD 09
-ENV JAVA_PATH d3c52aa6bfa54d3ca74e617f18309292
+ENV JAVA_UPDATE 333
+ENV JAVA_BUILD 02
+ENV JAVA_PATH 2dee051a5d0647d5be72a7c0abff270e
 ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-oracle
 ENV JAVA_JRE ${JAVA_HOME}/jre
 
@@ -36,7 +33,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 ENV MAVEN_MIRROR http://www-eu.apache.org/dist/maven/maven-3/
 ENV MAVEN_OPTS -XX:-OmitStackTraceInFastThrow -server -Xms512m -Xmx1024m
-ENV MAVEN_VERSION 3.8.4
+ENV MAVEN_VERSION 3.8.6
 ENV MAVEN_HOME /usr/share/maven
 
 RUN mkdir -p ${MAVEN_HOME} \
@@ -47,6 +44,15 @@ RUN mkdir -p ${MAVEN_HOME} \
 # NGINX
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get -y --no-install-recommends install nginx sysv-rc-conf
+
+
+# GITLAB-RUNNER
+
+RUN curl -Ls --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64" \
+ && chmod +x /usr/local/bin/gitlab-runner \
+ && useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash \ 
+ && gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner \
+ && rm /home/gitlab-runner/.bash_logout
 
 
 # CLEANUP
@@ -61,3 +67,5 @@ LABEL de.cismet.cids.java.maven.name="cids-distribution-base runtime image" \
       de.cismet.cids.java.maven.tag.docker="cids-distribution-base ${IMAGE_VERSION} jdk-1.${JAVA_VERSION}u${JAVA_UPDATE}" \
       de.cismet.cids.java.maven.tag.git="cids-distribution-base:${IMAGE_VERSION} jdk-1.${JAVA_VERSION}u${JAVA_UPDATE}" \
       de.cismet.cids.java.maven.description="Java and Maven Runtime Image" 
+
+LABEL maintainer="Jean-Michel Ruiz <jean.ruiz@cismet.de>"
