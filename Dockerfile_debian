@@ -28,7 +28,6 @@ RUN mkdir -p /usr/lib/jvm \
 
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
-
 # MAVEN
 
 ENV MAVEN_MIRROR http://www-eu.apache.org/dist/maven/maven-3/
@@ -41,19 +40,18 @@ RUN mkdir -p ${MAVEN_HOME} \
     && ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn
 
 
-# NGINX, DUMB-INIT
+# NGINX, DUMB-INIT, GIT
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
-    && apt-get -y --no-install-recommends install nginx sysv-rc-conf dumb-init
+    && apt-get -y --no-install-recommends install dumb-init git nginx sysv-rc-conf
 
 
 # GITLAB-RUNNER
 
 RUN curl -Ls --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64" \
  && chmod +x /usr/local/bin/gitlab-runner \
- && useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash \ 
- && gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner \
- && rm /home/gitlab-runner/.bash_logout
-
+ && mkdir /gitlab-runner \
+ && gitlab-runner install --user=root --working-directory=/gitlab-runner
+ 
 
 # CLEANUP
 
