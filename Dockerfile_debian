@@ -1,6 +1,6 @@
 ARG IMAGE_VERSION=7.1.1-debian
 
-FROM debian:stretch
+FROM debian:buster
 
 # STUFF
 
@@ -32,7 +32,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 ENV MAVEN_MIRROR http://www-eu.apache.org/dist/maven/maven-3/
 ENV MAVEN_OPTS -XX:-OmitStackTraceInFastThrow -server -Xms512m -Xmx1024m
-ENV MAVEN_VERSION 3.8.6
+ENV MAVEN_VERSION 3.9.1
 ENV MAVEN_HOME /usr/share/maven
 
 RUN mkdir -p ${MAVEN_HOME} \
