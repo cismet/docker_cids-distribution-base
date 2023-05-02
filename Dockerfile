@@ -42,7 +42,7 @@ RUN mkdir -p ${MAVEN_HOME} \
 
 # NGINX, DUMB-INIT, GIT
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
-    && apt-get -y --no-install-recommends install dumb-init git nginx sysv-rc-conf
+    && apt-get -y --no-install-recommends install dumb-init git nginx openssh-client sysv-rc-conf
 
 
 # GITLAB-RUNNER
