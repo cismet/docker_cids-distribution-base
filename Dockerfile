@@ -1,4 +1,4 @@
-ARG IMAGE_VERSION=8.0-debian
+ARG IMAGE_VERSION=8.1-debian
 
 FROM debian:buster
 
@@ -6,7 +6,7 @@ FROM debian:buster
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update \
-    && apt-get -y --no-install-recommends install ca-certificates curl gcc jq less libc6-dev libssl-dev locales locales-all make openssl postgresql-client procps unzip vim wget zip 
+    && apt-get -y --no-install-recommends install ca-certificates curl gcc jq less libc6-dev libssl-dev locales locales-all npm make openssl postgresql-client procps unzip vim wget zip 
 
 
 # JAVA
@@ -32,7 +32,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 ENV MAVEN_MIRROR http://www-eu.apache.org/dist/maven/maven-3/
 ENV MAVEN_OPTS -XX:-OmitStackTraceInFastThrow -server -Xms512m -Xmx1024m
-ENV MAVEN_VERSION 3.9.1
+ENV MAVEN_VERSION 3.9.4
 ENV MAVEN_HOME /usr/share/maven
 
 RUN mkdir -p ${MAVEN_HOME} \
@@ -55,8 +55,7 @@ RUN curl -Ls --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downlo
 
 # CLEANUP
 
-RUN apt-get remove --purge --auto-remove -y gcc libc6-dev libssl-dev make sysv-rc-conf
-
+RUN apt-get remove --purge --auto-remove -y sysv-rc-conf
 
 # ===
 
